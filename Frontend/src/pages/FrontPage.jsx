@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaApple, FaGooglePlay } from 'react-icons/fa';
 import backgroundImage from '../assets/images/FrontPage/FrontPageBG.jpg';
 import FooterSection from '../components/Footer';
+import UserLoginPopUp from '../pages/user/UserLoginPopUp';
 
 const FrontPage = () => {
+  const [showLogin, setShowLogin] = useState(false);
+
   return (
     <>
       <section
@@ -12,7 +15,7 @@ const FrontPage = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/20 z-10"></div>
 
         <header className="relative z-20 flex justify-between items-center px-6 py-4">
-          <h1 className="text-3xl font-bold">Randibaz App</h1>
+          <h1 className="text-3xl font-bold">Project X</h1>
           <nav className="hidden md:flex gap-6 text-white font-medium">
             <a href="#">Products</a>
             <a href="#">Learn</a>
@@ -20,12 +23,18 @@ const FrontPage = () => {
             <a href="#">Support</a>
             <a href="#">Download</a>
           </nav>
-          <button className="bg-white text-black px-4 py-1 rounded-full font-semibold hover:bg-gray-100">
+          <button
+            onClick={() => setShowLogin(true)}
+            className="bg-white text-black px-4 py-1 rounded-full font-semibold hover:bg-gray-100">
             Log in
           </button>
         </header>
 
         <main className="relative z-20 flex flex-col items-center justify-center text-center px-4 mt-28">
+          <UserLoginPopUp
+            isOpen={showLogin}
+            onClose={() => setShowLogin(false)}
+          />
           <h1 className="text-5xl sm:text-6xl font-extrabold mb-6">
             Find Your Match
           </h1>
